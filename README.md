@@ -22,7 +22,8 @@ Details on how the Radioactive Protocol Communicates through the websocket serve
  - PEER DATA (*)
  - ENCRYPT: (AES256SHAREDKEY*)
  - VERIFY: (ENCRYPTED TEST DATA*)
- - VERIFIED: (TRUE/FALSE)
+ - VERIFIED: (TRUE/FALSE) \
+
 Note that some of these are exclusive to specific message headers, described further down.
 
 ## Establish Communication:
