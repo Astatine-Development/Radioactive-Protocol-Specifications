@@ -3,6 +3,8 @@
 This document outlines the communication protocol used by the Radioactive Protocol through the WebSocket server.
 (HIGHLY UNFINISHED LARGE CHANGES MAY COME ABOUT AND MAJORITY HAS YET TO BE FINISHED OR DOCUMENTED)
 
+Aproximate Progress: ▓▓▓░░░░░░░░░░░░░░░░░ 15%
+
 ## Message Header Types
     Start Packet     End Packet
 - `<BEGIN>`   (`<#BEGIN>`)
