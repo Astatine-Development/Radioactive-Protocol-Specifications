@@ -40,7 +40,7 @@ Aproximate Progress: ▓▓▓░░░░░░░░░░░░░░░░�
 - **PEER** (*)
 - **CLIENT** (*)
 - **PEER DATA** (*)
-- **ENCRYPT**: (AES128SHAREDKEY*)
+- **ENCRYPT**: (SHAREDKEY*)
 - **VERIFY**: (ENCRYPTED TEST DATA*)
 - **VERIFIED**: (TRUE/FALSE)
 
@@ -57,8 +57,8 @@ Note that some of these data types are exclusive to specific message headers, as
 - **PEER**: For `<INFO>` and `<P2P>` types, indicates peer IP/domain.
 - **CLIENT**: For `<INFO>` only, used to send specific client information, depends on `TYPE`.
 - **PEER DATA**: For `<P2P>` only, includes data sent by the peer.
-- **ENCRYPT**: For `<BEGIN>` only, includes the key for AES128 encryption before it is enabled.
-- **VERIFY**: For `<BEGIN>` only, includes dummy data (e.g., test) AES128 encrypted with the key from `ENCRYPT`.
+- **ENCRYPT**: For `<BEGIN>` only, includes the public key for E2EE encryption before it is enabled.
+- **VERIFY**: For `<BEGIN>` only, includes dummy data (e.g., test) encrypted with the key from `ENCRYPT`.
 - **VERIFIED**: For `<BEGIN>` only, indicates if the data from `VERIFY` was decoded successfully and the message was understood.
 
 ## Establishing Communication
@@ -70,7 +70,7 @@ Note that some of these data types are exclusive to specific message headers, as
 <BEGIN>
 ID: UUID*
 ESTABLISHED: AWAITING
-ENCRYPT: SHAREDKEY*
+ENCRYPT: SERVER PUBLICKEY*
 <#BEGIN>
 ```
 *Example Client Response* 
@@ -79,6 +79,7 @@ ENCRYPT: SHAREDKEY*
 ID: SAME UUID*
 ESTABLISHED: TRUE
 VERIFY: TESTDATA*
+ENCRYPT: CLIENT PUBLICKEY*
 <#BEGIN>
 ```
 *Example Server Response* 
@@ -87,6 +88,16 @@ VERIFY: TESTDATA*
 ID: SAME UUID*
 ESTABLISHED: TRUE
 VERIFIED: TRUE
+ENCRYPT: CLIENT PUBLICKEY*
 <#BEGIN>
 ```
-Once the communication is established, all messages are encrypted using AES128 with the pre-shared key.
+*Example Client Response* 
+```
+<BEGIN>
+ID: SAME UUID*
+ESTABLISHED: TRUE
+VERIFIED: TRUE
+ENCRYPT: SERVER PUBLICKEY*
+<#BEGIN>
+```
+Once the communication is established, all messages are encrypted using with the pre-shared keys.
