@@ -34,7 +34,6 @@ Approximate Progress: ▓▓▓░░░░░░░░░░░░░░░░�
 - **TYPE** (*)
 - **ESTABLISHED** (TRUE/FALSE/AWAITING)
 - **DATA** (*)
-- **PARSEDDATA** (*)
 - **ERROR** (*), (ERROR CODE)
 - **PEER** (*)
 - **CLIENT** (*)
@@ -52,7 +51,6 @@ Note that some of these data types are exclusive to specific message headers, as
 - **TYPE**: Determines the type of message (e.g., P2P, REWRITE).
 - **ESTABLISHED**: `<BEGIN>` only, indicates if the connection was properly established.
 - **DATA**: Varies based on `TYPE`.
-- **PARSEDDATA**: For REWRITE type only, returns rewritten data (JavaScript).
 - **ERROR**: For `<ERROR>` only, includes the error message followed by the error code.
 - **PEER**: For `<INFO>` and `<P2P>` types, indicates peer IP/domain.
 - **CLIENT**: For `<INFO>` only, used to send specific client information, depends on `TYPE`.
@@ -84,15 +82,6 @@ ENCRYPT: CLIENT PUBLICKEY*
 <#BEGIN>
 ```
 *Example Server Response:*
-```plaintext
-<BEGIN>
-ID: SAME UUID*
-ESTABLISHED: TRUE
-VERIFIED: TRUE
-SESSION_KEY: DERIVED SESSION KEY*
-<#BEGIN>
-```
-*Example Client Response:*
 ```plaintext
 <BEGIN>
 ID: SAME UUID*
